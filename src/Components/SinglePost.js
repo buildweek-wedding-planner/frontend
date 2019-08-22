@@ -27,22 +27,3 @@ const SinglePost = ({ post }) => {
 };
 
 export default SinglePost;
-
-{
-  /* <div>{post.couple_name}</div> */
-}
-{
-  /* <img src={post.item_photo} /> */
-}
-{
-  /* <div>{post.wedding_date}</div> */
-}
-{
-  /* <div>{post.wedding_location}</div> */
-}
-{
-  /* <div>{post.wedding_photographer}</div> */
-}
-{
-  /* <div>{post.wedding_theme}</div> */
-}
