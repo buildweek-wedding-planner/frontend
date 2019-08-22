@@ -1,8 +1,14 @@
 import React from "react";
 import "./App.scss";
 
+import HomePage from "./Components/HomePage";
+
 function App() {
-  return <div />;
+  return (
+    <div>
+      <HomePage />
+    </div>
+  );
 }
 
 export default App;
