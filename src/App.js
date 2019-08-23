@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.scss";
 
-import HomePage from "./Components/HomePage";
+import Router from "./Components/Router";
 
 function App() {
   return (
     <div>
-      <HomePage />
+      <Router />
     </div>
   );
 }
