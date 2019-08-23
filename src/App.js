@@ -7,8 +7,8 @@ import Onboarding from "./Components/Onboarding";
 function App() {
   return (
     <div>
-      {/* <HomePage /> */}
       <Onboarding />
+      <HomePage />
     </div>
   );
 }
