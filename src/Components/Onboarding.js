@@ -44,8 +44,8 @@ const Onboarding = ({ errors, touched, values, status }) =>{
                 </label>
                 <button> Submit </button>
             </Form>
-            {user.map(animal => (
-        <p key={animal.id}>{animal.name}</p>
+            {user.map(user => (
+        <p key={user.id}>{user.name}</p> //testing
       ))}
         </div>
     );
