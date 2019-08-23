@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// import { Redirect } from "react-router-dom";
 import { Form, Field, withFormik } from "formik";
 // import { Persist } from "formik-persist";
 import * as Yup from "yup";
 import { Card, Button } from "semantic-ui-react";
 
-const Login = ({ touched, errors, status, values }) => {
+const Login = ({ touched, errors, status }) => {
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
 
@@ -14,7 +15,7 @@ const Login = ({ touched, errors, status, values }) => {
       setUser([...user, status]);
       setPassword([...password, status]);
     }
-  }, [status]);
+  }, [user, password, status]);
 
   return (
     <Card raised centered className="loginCard">
@@ -25,7 +26,7 @@ const Login = ({ touched, errors, status, values }) => {
         <Card.Description textAlign={"center"}>
           <Form className="loginForm">
             <Field component="input" type="text" name="username" placeholder="User Name" className="loginForm__field" />
-            {touched.name && errors.name && <i>{errors.name}</i>}
+            {touched.username && errors.username && <i>{errors.username}</i>}
             <Field component="input" type="password" name="password" placeholder="Password" className="loginForm__field" />
             {touched.password && errors.password && <i>{errors.password}</i>}
             <Button content="Submit" type="submit" />
@@ -44,19 +45,24 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    user: Yup.string().required("Please enter a username"),
+    username: Yup.string().required("Please enter a username"),
     password: Yup.string().required("Please enter a password")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log(values);
     axios
-      .post("", values)
+      .post("https://reqres.in/api/users", values)
       .then(resolve => {
         console.log("login resolve > ", resolve);
         resetForm();
+        resolve.status === 201 ? console.log("201 success") : console.log("201 failure");
       })
-      .catch(error => console.log("login error > ", error));
+      .catch(error => {
+        console.log("login error > ", error);
+        resetForm();
+      });
   }
 })(Login);
 
 // https://lambda-wedding-planner.herokuapp.com/api/auth/login
+// sessionStorage.setItem("reqres.in id", resolve.data.id);
