@@ -11,14 +11,17 @@ const SinglePost = ({ post }) => {
         <Card.Meta>
           <Moment format="MMMM DD, YYYY">{post.wedding_date}</Moment>
         </Card.Meta>
-        <Card.Meta>{post.wedding_location}</Card.Meta>
-        <Card.Meta>{post.wedding_theme}</Card.Meta>
+        <Card.Description>
+          A {post.wedding_theme.toLowerCase()} theme in {post.wedding_location} at [venue]
+        </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Card.Meta>Photography by {post.wedding_photographer}</Card.Meta>
+        <Card.Meta>Catering by [caterer]</Card.Meta>
+        <Card.Meta>Music by [DJ]</Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <Card.Description>User ID is always {post.user_id}?</Card.Description>
+        <Card.Description>Event planning by {post.user_id}</Card.Description>
       </Card.Content>
     </Card>
   );
