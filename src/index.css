@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.onboarding{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.signUp{
+  margin: 10px 0px;
+}
+
+.des{
+  height:10%;
+}
