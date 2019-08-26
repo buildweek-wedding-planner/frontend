@@ -2,12 +2,14 @@ import React from "react";
 import "./App.scss";
 
 import HomePage from "./Components/HomePage";
-import Onboarding from "./Components/Onboarding";
+// import Onboarding from "./Components/Onboarding";
+import SignUpModal from "./Components/SignUpModal";
 
 function App() {
   return (
     <div>
-      <Onboarding />
+      <SignUpModal />
+      {/* <Onboarding /> */}
       <HomePage />
     </div>
   );
