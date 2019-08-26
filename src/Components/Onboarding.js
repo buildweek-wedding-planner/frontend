@@ -15,22 +15,22 @@ function Onboarding({ values, errors, touched, isSubmitting, status }){
 
   return (
 
-    <Form>
-      <Field type="email" name="email" placeholder="email@example.com" />
-      <Field name="firstName" placeholder="First Name"/>
-      <Field name="lastName" placeholder="Last Name"/>
-      <Field type="password" name="password" placeholder="password" />
-      <label>
-        <Field type="checkbox" name="tos" checked={values.tos} />
-        Accept TOS
-      </label>
-      <Field component="select" name="service">
+    <Form className="onboarding">
+      <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
+      <Field className="signUp" name="firstName" placeholder="First Name"/>
+      <Field className="signUp" name="lastName" placeholder="Last Name"/>
+      <Field className="signUp" type="password" name="password" placeholder="password" />
+      <Field className="signUp" component="select" name="service">
         <option value="trad">Traditional</option>
         <option value="mod">Modern</option>
         <option value="Custom">Custom</option>
       </Field>
       tell us about yourself:
-      <Field type="Input" name="abtMe"/>
+      <Field className="signUp des" type="text" name="abtMe"/>
+      <label>
+        <Field className="signUp" type="checkbox" name="tos" checked={values.tos} />
+        Accept TOS
+      </label>
       <button disabled={isSubmitting} type="submit">Submit</button>
     </Form>
   )
