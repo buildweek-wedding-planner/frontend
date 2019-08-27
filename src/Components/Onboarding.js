@@ -16,36 +16,42 @@ function Onboarding({ values, errors, touched, isSubmitting, status }){
   return (
 
     <Form className="onboarding">
-      <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
       <Field className="signUp" name="firstName" placeholder="First Name"/>
       <Field className="signUp" name="lastName" placeholder="Last Name"/>
+      <Field className="signUp" type="username" name="username" placeholder="username" />
+      <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
       <Field className="signUp" type="password" name="password" placeholder="password" />
       <Field className="signUp" component="select" name="service">
+        <option>Wedding Speciality:</option>
         <option value="trad">Traditional</option>
         <option value="mod">Modern</option>
         <option value="Custom">Custom</option>
       </Field>
-      tell us about yourself:
+      Description:
       <Field className="signUp des" type="text" name="abtMe"/>
+      Phone Number:
+      <Field className="signUp" type="text" name="cntct"/>
       <label>
-        <Field className="signUp" type="checkbox" name="tos" checked={values.tos} />
-        Accept TOS
+        <Field type="checkbox" name="tos" checked={values.tos} />
+          Accept Terms of Services and Privacy Statments
       </label>
-      <button disabled={isSubmitting} type="submit">Submit</button>
+      <button className="suBtn" disabled={isSubmitting} type="submit">Submit</button>
     </Form>
   )
 };
 
 const FormikOnboarding = withFormik({
-  mapPropsToValues({ email, firstName, lastName, password, tos, service, abtMe }){
+  mapPropsToValues({ email, firstName, lastName, username, password, tos, service, abtMe, cntct }){
     return{
       email: email || "",
       firstName: firstName || "",
       lastName: lastName || "",
+      username: username || "",
       password: password || "",
       tos: tos || false,
-      service: service || "trad",
-      abtMe: abtMe || ""
+      service: service || "",
+      abtMe: abtMe || "",
+      cntct: cntct || ""
     };
   },
   validationSchema: Yup.object().shape({

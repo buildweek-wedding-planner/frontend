@@ -19,8 +19,15 @@ code {
 
 .signUp{
   margin: 10px 0px;
+  height:30px;
+  border-radius: 5px;
+  width: 400px;
 }
 
-.des{
-  height:10%;
+.suBtn{
+  height:40px;
+  width:120px; 
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
 }

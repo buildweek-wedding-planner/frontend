@@ -5,11 +5,11 @@ import Onboarding from "./Onboarding";
 
 const SignUpModal = () => (
     <Modal trigger={<Button>Sign Up</Button>}>
-      <Modal.Header>Wedding Planner Info</Modal.Header>
+      <Modal.Header>Sign Up</Modal.Header>
       <Modal.Content image>
         <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' />
         <Modal.Description>
-          <Header>Default Profile Image</Header>
+          <Header>Wedding Planner Information</Header>
         
             <Onboarding />
         </Modal.Description>
