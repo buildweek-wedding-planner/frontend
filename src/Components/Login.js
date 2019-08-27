@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { Form, Formik, Field, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
 
