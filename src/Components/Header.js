@@ -3,12 +3,12 @@ import { withRouter } from 'react-router-dom'
 import Onboarding from "./Onboarding";
 import Login from "./Login";
 
-const Header = props => {
+const Header = ({ history }) => {
 
   return (
     <div>
       <Onboarding />
-      <Login history={props.history} />
+      <Login history={history} />
     </div>
   );
 };
