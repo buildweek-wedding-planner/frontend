@@ -1,101 +1,76 @@
-import React, { Component } from 'react'
-import { Button, Icon, Modal,Form, Input, TextArea, Select, Checkbox } from 'semantic-ui-react'
+import React, { useState, useEffect } from "react";
+import { withFormik, Form, Field} from "formik";
+import axios from "axios";
+import * as Yup from "yup";
 
-class NestedModal extends Component {
-  state = { open: false }
+function Onboarding({ values, errors, touched, isSubmitting, status }){
 
-  open = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  const [user, setUser] = useState([]);
 
-  render() {
-    const { open } = this.state
+  useEffect(() => {
+    if (status) {
+      setUser([...user, status]);
+    }
+  },[status]);
 
-    return (
-      <Modal
-        open={open}
-        onOpen={this.open}
-        onClose={this.close}
-        size='small'
-        trigger={
-          <Button primary icon>
-            Proceed <Icon name='right chevron' />
-          </Button>
-        }
-      >
-        <Modal.Header>Sign Up Complete</Modal.Header>
-        <Modal.Content>
-          <p>We look forward on working with you</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button icon='check' content='All Done' onClick={this.close} />
-        </Modal.Actions>
-      </Modal>
-    )
-  }
-}
+  return (
 
-const genderOptions = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-  { key: 'o', text: 'Other', value: 'other' },
-]
-
-const Onboarding = () => (
-
-  <Modal trigger={<Button>Sign Up</Button>}>
-    <Modal.Header>Sign Up</Modal.Header>
-    <Modal.Content image>
-      {/* <div className='image'>
-        {/* <Icon name='right arrow' /> 
-      </div> */}
-      <Modal.Description>
-
-  <Form>
-    <Form.Group widths='equal'>
-      <Form.Field
-        id='form-input-control-first-name'
-        control={Input}
-        label='First name'
-        placeholder='First name'
-      />
-      <Form.Field
-        id='form-input-control-last-name'
-        control={Input}
-        label='Last name'
-        placeholder='Last name'
-      />
-      <Form.Field
-        control={Select}
-        options={genderOptions}
-        label={{ children: 'Gender', htmlFor: 'form-select-control-gender' }}
-        placeholder='Gender'
-        search
-        searchInput={{ id: 'form-select-control-gender' }}
-      />
-    </Form.Group>
-    <Form.Field
-      id='form-textarea-control-opinion'
-      control={TextArea}
-      label='About Me'
-      placeholder='I like/love to'
-    />
-    <Form.Field
-      control={Checkbox}
-      label={{ children: 'I agree to the Terms and Conditions' }}
-    />   
-    <Form.Field
-        id='form-button-control-public'
-        control={Button}
-        content='Confirm'
-        label=''
-    />
+    <Form className="onboarding">
+      <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
+      <Field className="signUp" name="firstName" placeholder="First Name"/>
+      <Field className="signUp" name="lastName" placeholder="Last Name"/>
+      <Field className="signUp" type="password" name="password" placeholder="password" />
+      <Field className="signUp" component="select" name="service">
+        <option value="trad">Traditional</option>
+        <option value="mod">Modern</option>
+        <option value="Custom">Custom</option>
+      </Field>
+      tell us about yourself:
+      <Field className="signUp des" type="text" name="abtMe"/>
+      <label>
+        <Field className="signUp" type="checkbox" name="tos" checked={values.tos} />
+        Accept TOS
+      </label>
+      <button disabled={isSubmitting} type="submit">Submit</button>
     </Form>
-      </Modal.Description>
-    </Modal.Content>
-    <Modal.Actions>
-      <NestedModal />
-    </Modal.Actions>
-  </Modal>
-)
+  )
+};
 
-export default Onboarding
+const FormikOnboarding = withFormik({
+  mapPropsToValues({ email, firstName, lastName, password, tos, service, abtMe }){
+    return{
+      email: email || "",
+      firstName: firstName || "",
+      lastName: lastName || "",
+      password: password || "",
+      tos: tos || false,
+      service: service || "trad",
+      abtMe: abtMe || ""
+    };
+  },
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email("Email is NOT valid")
+      .required("email is REQUIRED"),
+    firstName: Yup.string()
+      .required("Must enter first name"),
+    lastName: Yup.string()
+      .required("Must enter last name"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters long")
+      .required("password is REQUIRED")
+  }),
+  handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
+    console.log(values);
+    axios
+      .post("https://reqres.in/api/users", values)
+      .then(res=>{
+        console.log(res);
+        setStatus(res)
+        setSubmitting(false);
+      })
+  }
+})(Onboarding);
+
+
+export default FormikOnboarding;
