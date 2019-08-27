@@ -7,6 +7,7 @@ import HomePage from "./Components/HomePage";
 import SignUpModal from "./Components/SignUpModal";
 import Router from "./Components/Router";
 import Navigation from "./Components/Navigation";
+import Header from "./Components/Header";
 
 
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <div>
 
-      <Navigation />
+      <Header />
 
       <Router />
       

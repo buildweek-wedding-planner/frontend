@@ -15,13 +15,12 @@ code {
 .onboarding{
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
 }
 
 .signUp{
   margin: 10px 0px;
-  height:30px;
   border-radius: 5px;
-  width: 400px;
 }
 
 .suBtn{
@@ -30,4 +29,5 @@ code {
   border-radius: 5px;
   margin-top: 10px;
   cursor: pointer;
+  text-align: center;
 }

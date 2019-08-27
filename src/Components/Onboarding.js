@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field} from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import { Card, Button, Modal } from "semantic-ui-react";
 
 function Onboarding(props){
   const { values, errors, touched, isSubmitting, status } = props;
@@ -14,7 +15,15 @@ function Onboarding(props){
 
   return (
 
-    <Form className="onboarding">
+    <Modal basic centered closeIcon trigger={<Button content={"Sign Up"} />}>
+      <Modal.Content>
+        <Card raised centered>
+          <Card.Content>
+            <Card.Header as="h2" textAlign={"center"}>
+              Sign Up
+            </Card.Header>
+            <Card.Description textAlign={"center"}>
+            <Form className="onboarding">
       <Field className="signUp" name="firstName" placeholder="First Name"/>
       <Field className="signUp" name="lastName" placeholder="Last Name"/>
       <Field className="signUp" type="username" name="username" placeholder="username" />
@@ -36,6 +45,13 @@ function Onboarding(props){
       </label>
       <button className="suBtn" disabled={isSubmitting} type="submit">Submit</button>
     </Form>
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </Modal.Content>
+    </Modal>
+
+    
   )
 };
 
@@ -68,8 +84,9 @@ const FormikOnboarding = withFormik({
   handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
     console.log(values);
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("https://reqres.in/api/user", values)
       .then(res=>{
+        console.log(res)
         setStatus(res)
         setSubmitting(false);
       })
