@@ -1,33 +1,19 @@
 import React from "react";
 import "./App.scss";
 
-
-import HomePage from "./Components/HomePage";
-
-import SignUpModal from "./Components/SignUpModal";
+import Header from "./Components/Header";
 import Router from "./Components/Router";
-
-
-import Onboarding from "./Components/Onboarding";
-import Router from "./Components/Router";
-
-
 
 function App() {
   return (
     <div>
-
-
-      <SignUpModal />
-
-
-      <Onboarding />
-      <HomePage />
-
+      <Header />
       <Router />
-
     </div>
   );
 }
 
 export default App;
+
+// removed HomePage - set in Router
+// removed Onbouard - called by Header, will also inclide Login, logo, etc
