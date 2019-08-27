@@ -3,13 +3,12 @@ import { withFormik, Form, Field} from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 
-function Onboarding({ values, errors, touched, isSubmitting, status }){
-
-  const [user, setUser] = useState([]);
+function Onboarding(props){
+  const { values, errors, touched, isSubmitting, status } = props;
 
   useEffect(() => {
     if (status) {
-      setUser([...user, status]);
+      props.userInfo(status.data);
     }
   },[status]);
 
@@ -41,7 +40,7 @@ function Onboarding({ values, errors, touched, isSubmitting, status }){
 };
 
 const FormikOnboarding = withFormik({
-  mapPropsToValues({ email, firstName, lastName, username, password, tos, service, abtMe, cntct }){
+  mapPropsToValues({ email, firstName, lastName, username, password, tos, service, abtMe, cntct }, props){
     return{
       email: email || "",
       firstName: firstName || "",
@@ -71,7 +70,6 @@ const FormikOnboarding = withFormik({
     axios
       .post("https://reqres.in/api/users", values)
       .then(res=>{
-        console.log(res);
         setStatus(res)
         setSubmitting(false);
       })

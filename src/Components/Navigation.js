@@ -10,12 +10,11 @@ import Dashboard from "./Dashboard";
 const Navigation = () => {
   return(
     <div>
-      <Link to="/HomePage">Home</Link>
+      <Link to="/">Home</Link>
+      <Link to="/Dashboard">Dashboard</Link>
       <Link to="/Onboarding">Sign Up</Link>
       <Link to="/Login">Login</Link>
-      <Route exact path="/HomePage" component={Homepage} />
-      <Route path="/Onboarding" component={Onboarding} />
-      <Route path="/Login" component={Login} />
+
     </div>
   );
 };
