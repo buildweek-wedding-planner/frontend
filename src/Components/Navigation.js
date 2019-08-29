@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import PostPage from "./PostPage";

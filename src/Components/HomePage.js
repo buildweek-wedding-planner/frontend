@@ -4,8 +4,7 @@ import { Container } from "semantic-ui-react";
 
 import SinglePost from "./SinglePost";
 
-const HomePage = (props) => {
-  
+const HomePage = () => {
   const [userPost, setUserPost] = useState([]);
 
   useEffect(() => {
@@ -16,11 +15,7 @@ const HomePage = (props) => {
   }, []);
 
   return (
-    
     <Container textAlign="center">
-      {props.user.map(user =>{
-        return <h4 key={user.id}>hi {user.firstName}</h4>
-      })}
       {userPost.map(post => {
         return <SinglePost key={post.id} post={post} />;
       })}
