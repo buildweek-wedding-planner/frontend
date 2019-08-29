@@ -1,25 +1,18 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute";
 import HomePage from "./HomePage";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
+import PostPage from "./PostPage";
 
 const Router = () => {
   return (
     <div>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/login" component={Login} />
-      <Route
-        exact
-        path="/dashboard"
-        render={props => {
-          const token = localStorage.getItem("token");
-          if (!token) {
-            return <Redirect to="/" />;
-          }
-          return <Dashboard {...props} />;
-        }}
-      />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/newpost" component={PostPage} />
     </div>
   );
 };

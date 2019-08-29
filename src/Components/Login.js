@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { Form, Formik, Field, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
 
@@ -45,13 +45,13 @@ export default withFormik({
     email: Yup.string(),
     password: Yup.string()
   }),
-  handleSubmit(values, { resetForm, formikBag }) {
+  handleSubmit(values, { resetForm, history }) {
     axios
       .post("https://reqres.in/api/login", values)
       .then(resolve => {
         console.log("login resolve > ", resolve);
         localStorage.setItem("token", resolve.data.token);
-        formikBag.props.history.push("/dashboard");
+        history.push("/dashboard");
       })
       .catch(error => {
         console.log("login error > ", error);
