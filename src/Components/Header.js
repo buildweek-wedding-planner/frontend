@@ -1,14 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import SignUpModal from "./SignUpModal";
-import Login from "./Login";
+import Navigation from "./Navigation";
 
 const Header = ({ history }) => {
   return (
-    <div>
-      <SignUpModal />
-      <Login history={history} />
-    </div>
+    <header class="pageHeader">
+      <Navigation />
+    </header>
   );
 };
 
