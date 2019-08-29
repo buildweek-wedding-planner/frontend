@@ -1,3 +1,13 @@
+body {
+  padding: 0 30px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
 .loginForm {
   display: flex;
   flex-direction: column;
