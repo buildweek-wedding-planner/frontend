@@ -9,7 +9,7 @@ const SinglePost = ({ post }) => {
         <Grid.Column>
           <Card raised centered>
             <Card.Content>
-              <Modal basic centered={true} closeIcon trigger={<Image src={post.item_photo} alt={post.couple_name} />}>
+              <Modal basic centered={true} closeIcon trigger={<Image className="cursor" src={post.item_photo} alt={post.couple_name} />}>
                 <Modal.Content image>
                   <Image src={post.item_photo} alt={post.couple_name} />
                 </Modal.Content>
