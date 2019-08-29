@@ -12,9 +12,37 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 30px;
   &__field {
     padding: 5px;
     margin-bottom: 16px;
+  }
+}
+
+// .newPostModal {
+// width: 100% !important;
+// }
+
+.newPostCard {
+  width: 100%;
+}
+
+.newPost {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  &__form {
+    padding: 25px;
+  }
+  &__area {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  &__field {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
   }
 }
