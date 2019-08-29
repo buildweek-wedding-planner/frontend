@@ -22,7 +22,7 @@ const Login = props => {
             </Card.Header>
             <Card.Description textAlign={"center"}>
               <Form className="loginForm">
-                <Field component="input" type="text" name="email" placeholder="Email" className="loginForm__field" />
+                <Field component="input" type="text" name="username" placeholder="Email" className="loginForm__field" />
                 <Field component="input" type="password" name="password" placeholder="Password" className="loginForm__field" />
                 <Button type="submit" content="Submit" />
               </Form>
@@ -35,19 +35,19 @@ const Login = props => {
 };
 
 export default withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ username, password }) {
     return {
-      email: email || "",
+      username: username || "",
       password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string(),
+    username: Yup.string(),
     password: Yup.string()
   }),
   handleSubmit(values, { resetForm, formikBag }) {
     axios
-      .post("https://reqres.in/api/login", values)
+      .post("https://lambda-wedding-planner.herokuapp.com/api/auth/login", values)
       .then(resolve => {
         console.log("login resolve > ", resolve);
         localStorage.setItem("token", resolve.data.token);

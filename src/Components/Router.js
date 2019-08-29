@@ -15,10 +15,9 @@ const Router = () => {
 
   return (
     <div>
+      <Route exact path="/Onboarding" render={rProps=> <Onboarding {...rProps} userInfo={userInfo}/>}/>
       <Route exact path="/" render={rProps=><Homepage {...rProps} user={user} />}/>
       <Route exact path="/Dashboard" render={rProps=> <Dashboard {...rProps} user={user} />}/>
-      <Route exact path="/Onboarding" render={rProps=> <Onboarding {...rProps} userInfo={userInfo}/>}/>
-      <Route exact path="/Login" render={rProps=> <Login {...rProps} userInfo={user}/>}/>
     </div>
   );
 };
