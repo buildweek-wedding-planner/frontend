@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field} from "formik";
+
 import axios from "axios";
 import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
-
 
 function Onboarding(props){
   const { values, errors, touched, isSubmitting, status } = props;
 
   const token = localStorage.getItem("token");
+
 
   console.log(token);
 
@@ -64,6 +65,7 @@ const FormikOnboarding = withFormik({
     email: Yup.string()
       .email("Email is NOT valid")
       .required("email is REQUIRED"),
+
     username: Yup.string()
       .required("Must enter name"),
     password: Yup.string()
@@ -71,6 +73,7 @@ const FormikOnboarding = withFormik({
       .required("password is REQUIRED")
   }),
   handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
+
     axios
       .post("https://lambda-wedding-planner.herokuapp.com/api/auth/register", values)
       .then(res=>{
@@ -83,8 +86,8 @@ const FormikOnboarding = withFormik({
         console.log("Sign Up error > ", err);
         resetForm();
       });
+
   }
 })(Onboarding);
-
 
 export default FormikOnboarding;

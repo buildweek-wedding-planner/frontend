@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { Form, Formik, Field, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
 
@@ -22,7 +22,7 @@ const Login = props => {
             </Card.Header>
             <Card.Description textAlign={"center"}>
               <Form className="loginForm">
-                <Field component="input" type="text" name="username" placeholder="Email" className="loginForm__field" />
+                <Field component="input" type="text" name="email" placeholder="Email" className="loginForm__field" />
                 <Field component="input" type="password" name="password" placeholder="Password" className="loginForm__field" />
                 <Button type="submit" content="Submit" />
               </Form>
@@ -35,23 +35,23 @@ const Login = props => {
 };
 
 export default withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ email, password }) {
     return {
-      username: username || "",
+      email: email || "",
       password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string(),
+    email: Yup.string(),
     password: Yup.string()
   }),
-  handleSubmit(values, { resetForm, formikBag }) {
+  handleSubmit(values, { resetForm, history }) {
     axios
-      .post("https://lambda-wedding-planner.herokuapp.com/api/auth/login", values)
+      .post("https://reqres.in/api/login", values)
       .then(resolve => {
         console.log("login resolve > ", resolve);
         localStorage.setItem("token", resolve.data.token);
-        formikBag.props.history.push("/dashboard");
+        history.push("/dashboard");
       })
       .catch(error => {
         console.log("login error > ", error);
