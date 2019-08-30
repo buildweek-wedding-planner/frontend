@@ -29,14 +29,10 @@ const PostText = ({ touched, errors, status }) => {
         <Card raised centered>
           <Card.Content>
             <Form className="newPost__form">
-              <Field className="newPost__field" component="input" type="text" name="couple" placeholder="Couple" />
-              <Field className="newPost__field" component="input" type="text" name="venue" placeholder="Venue" />
-              <Field className="newPost__field" component="input" type="text" name="location" placeholder="Location" />
-              <Field className="newPost__field" component="input" type="text" name="theme" placeholder="Theme" />
-              <Field className="newPost__field" component="input" type="text" name="photographer" placeholder="Photographer" />
-              <Field className="newPost__field" component="input" type="text" name="videographer" placeholder="Videographer" />
-              <Field className="newPost__field" component="input" type="text" name="caterer" placeholder="Caterer" />
-              <Field className="newPost__field" component="input" type="text" name="music" placeholder="Music" />
+              <Field className="newPost__field" component="input" type="text" name="couple_name" placeholder="Couple" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_location" placeholder="Location" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_theme" placeholder="Theme" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_photographer" placeholder="Photographer" />
               <Button type="submit" content="Submt" />
               <Button type="reset" content="Reset" />
             </Form>
@@ -48,16 +44,12 @@ const PostText = ({ touched, errors, status }) => {
 };
 
 export default withFormik({
-  mapPropsToValues({ couple, venue, location, theme, photographer, videographer, caterer, music }) {
+  mapPropsToValues({ couple_name, wedding_location, wedding_theme, wedding_photographer }) {
     return {
-      couple: couple || "",
-      venue: venue || "",
-      location: location || "",
-      theme: theme || "",
-      photographer: photographer || "",
-      videographer: videographer || "",
-      caterer: caterer || "",
-      music: music || ""
+      couple_name: couple_name || "",
+      wedding_location: wedding_location || "",
+      wedding_theme: wedding_theme || "",
+      wedding_photographer: wedding_photographer || ""
     };
   },
   validationSchema: Yup.object().shape({
