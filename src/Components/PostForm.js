@@ -4,7 +4,7 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Divider, Grid, Icon } from "semantic-ui-react";
 
-const PostForm = (props, { touched, errors, status }) => {
+const PostForm = ({ toggle, touched, errors, status, values }) => {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
@@ -33,8 +33,12 @@ const PostForm = (props, { touched, errors, status }) => {
               <Field className="newPost__field" component="input" type="text" name="wedding_location" placeholder="Location" />
               <Field className="newPost__field" component="input" type="text" name="wedding_theme" placeholder="Theme" />
               <Field className="newPost__field" component="input" type="text" name="wedding_photographer" placeholder="Photographer" />
-              <Button type="submit" content="Submt" onClick={event => props.toggle(event)} />
+              <Button type="submit" content="Submt" onClick={event => toggle(event)} />
               <Button type="reset" content="Reset" />
+              {(touched.couple_name && errors.couple_name) ||
+                (touched.wedding_location && errors.wedding_location) ||
+                (touched.wedding_photographer && errors.wedding_photographer) ||
+                (touched.wedding_theme && errors.wedding_theme && <p>{errors.couple_name}</p>)}
             </Form>
           </Card.Content>
         </Card>
@@ -53,14 +57,10 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    couple: Yup.string(),
-    venue: Yup.string(),
-    location: Yup.string(),
-    theme: Yup.string(),
-    photographer: Yup.string(),
-    videographer: Yup.string(),
-    caterer: Yup.string(),
-    dj: Yup.string()
+    couple_name: Yup.string().required("Details are everything"),
+    wedding_location: Yup.string().required("Details are everything"),
+    wedding_theme: Yup.string().required("Details are everything"),
+    wedding_photographer: Yup.string().required("Details are everything")
   }),
   handleSubmit(values, { resetForm, setStatus }) {
     axios
