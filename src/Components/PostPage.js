@@ -10,7 +10,7 @@ const PostPage = props => {
   };
 
   return (
-    <Modal className="newPostModal" centered closeIcon open={isShowing} onOpen={toggle} trigger={<Button content={"Make a new post"} />}>
+    <Modal className="newPostModal" centered closeIcon open={isShowing} onOpen={toggle} onClose={toggle} trigger={<Button content={"Make a new post"} />}>
       <Modal.Content>
         <Segment raised>
           <Grid columns={2} stackable textAlign="center">
