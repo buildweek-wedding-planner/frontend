@@ -4,14 +4,14 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Divider, Grid, Icon } from "semantic-ui-react";
 
-const PostText = ({ touched, errors, status }) => {
+const PostForm = (props, { touched, errors, status }) => {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     if (status) {
       setPost([...post, status]);
     }
-  }, [status]);
+  }, [status, post]);
 
   return (
     <div className="newPost">
@@ -33,7 +33,7 @@ const PostText = ({ touched, errors, status }) => {
               <Field className="newPost__field" component="input" type="text" name="wedding_location" placeholder="Location" />
               <Field className="newPost__field" component="input" type="text" name="wedding_theme" placeholder="Theme" />
               <Field className="newPost__field" component="input" type="text" name="wedding_photographer" placeholder="Photographer" />
-              <Button type="submit" content="Submt" />
+              <Button type="submit" content="Submt" onClick={event => props.toggle(event)} />
               <Button type="reset" content="Reset" />
             </Form>
           </Card.Content>
@@ -74,4 +74,4 @@ export default withFormik({
         console.log("submit post error > ", error);
       });
   }
-})(PostText);
+})(PostForm);
