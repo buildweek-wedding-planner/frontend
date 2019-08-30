@@ -36,10 +36,10 @@ function Onboarding(props){
               <Field className="signUp" type="password" name="password" placeholder="password" />
               <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
               <Field className="signUp" type="location" name="location" placeholder="location" />
-              <label>
-                {/* <Field type="checkbox" name="tOS" checked={status.tOS} /> */}
+              {/* <label>
+                <Field type="checkbox" name="tOS" checked={status.tOS} />
                   Accept Terms of Services and Privacy Statments
-              </label>
+              </label> */}
               <Button type="submit" disabled={isSubmitting} content="Submit" />
             </Form>
             </Card.Description>

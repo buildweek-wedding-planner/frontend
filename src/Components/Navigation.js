@@ -1,9 +1,9 @@
 import { NavLink, withRouter } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import PostPage from "./PostPage";
-import SignUpModal from "./SignUpModal";
+import Onboarding from "./Onboarding";
 import Login from "./Login";
-
+import React from "react";
 const Navigation = ({ history }) => {
   const token = localStorage.getItem("token");
 
@@ -22,7 +22,7 @@ const Navigation = ({ history }) => {
   }
   return (
     <>
-      <SignUpModal />
+      <Onboarding />
       <Login history={history} />
     </>
   );
