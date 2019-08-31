@@ -4,14 +4,14 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Card, Divider, Grid, Icon } from "semantic-ui-react";
 
-const PostText = ({ touched, errors, status }) => {
+const PostForm = ({ toggle, touched, errors, status, values }) => {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     if (status) {
       setPost([...post, status]);
     }
-  }, [status]);
+  }, [status, post]);
 
   return (
     <div className="newPost">
@@ -29,16 +29,16 @@ const PostText = ({ touched, errors, status }) => {
         <Card raised centered>
           <Card.Content>
             <Form className="newPost__form">
-              <Field className="newPost__field" component="input" type="text" name="couple" placeholder="Couple" />
-              <Field className="newPost__field" component="input" type="text" name="venue" placeholder="Venue" />
-              <Field className="newPost__field" component="input" type="text" name="location" placeholder="Location" />
-              <Field className="newPost__field" component="input" type="text" name="theme" placeholder="Theme" />
-              <Field className="newPost__field" component="input" type="text" name="photographer" placeholder="Photographer" />
-              <Field className="newPost__field" component="input" type="text" name="videographer" placeholder="Videographer" />
-              <Field className="newPost__field" component="input" type="text" name="caterer" placeholder="Caterer" />
-              <Field className="newPost__field" component="input" type="text" name="music" placeholder="Music" />
-              <Button type="submit" content="Submt" />
+              <Field className="newPost__field" component="input" type="text" name="couple_name" placeholder="Couple" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_location" placeholder="Location" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_theme" placeholder="Theme" />
+              <Field className="newPost__field" component="input" type="text" name="wedding_photographer" placeholder="Photographer" />
+              <Button type="submit" content="Submt" onClick={event => toggle(event)} />
               <Button type="reset" content="Reset" />
+              {(touched.couple_name && errors.couple_name) ||
+                (touched.wedding_location && errors.wedding_location) ||
+                (touched.wedding_photographer && errors.wedding_photographer) ||
+                (touched.wedding_theme && errors.wedding_theme && <p>{errors.couple_name}</p>)}
             </Form>
           </Card.Content>
         </Card>
@@ -48,27 +48,19 @@ const PostText = ({ touched, errors, status }) => {
 };
 
 export default withFormik({
-  mapPropsToValues({ couple, venue, location, theme, photographer, videographer, caterer, music }) {
+  mapPropsToValues({ couple_name, wedding_location, wedding_theme, wedding_photographer }) {
     return {
-      couple: couple || "",
-      venue: venue || "",
-      location: location || "",
-      theme: theme || "",
-      photographer: photographer || "",
-      videographer: videographer || "",
-      caterer: caterer || "",
-      music: music || ""
+      couple_name: couple_name || "",
+      wedding_location: wedding_location || "",
+      wedding_theme: wedding_theme || "",
+      wedding_photographer: wedding_photographer || ""
     };
   },
   validationSchema: Yup.object().shape({
-    couple: Yup.string(),
-    venue: Yup.string(),
-    location: Yup.string(),
-    theme: Yup.string(),
-    photographer: Yup.string(),
-    videographer: Yup.string(),
-    caterer: Yup.string(),
-    dj: Yup.string()
+    couple_name: Yup.string().required("Details are everything"),
+    wedding_location: Yup.string().required("Details are everything"),
+    wedding_theme: Yup.string().required("Details are everything"),
+    wedding_photographer: Yup.string().required("Details are everything")
   }),
   handleSubmit(values, { resetForm, setStatus }) {
     axios
@@ -82,4 +74,4 @@ export default withFormik({
         console.log("submit post error > ", error);
       });
   }
-})(PostText);
+})(PostForm);

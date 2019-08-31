@@ -1,70 +1,84 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
+
 import axios from "axios";
 import * as Yup from "yup";
+import { Card, Button, Modal } from "semantic-ui-react";
 
-function Onboarding({ values, errors, touched, isSubmitting, status }) {
-  const [user, setUser] = useState([]);
+function Onboarding(props) {
+  const { values, errors, touched, isSubmitting, status } = props;
 
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
-    }
-  }, [status, user]);
+  const token = localStorage.getItem("token");
 
+  console.log(token);
+
+  console.log(values);
+
+  if (token) {
+    console.log(token);
+    return <Redirect to="/dashboard" />;
+  }
   return (
-    <Form className="onboarding">
-      <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
-      <Field className="signUp" name="firstName" placeholder="First Name" />
-      <Field className="signUp" name="lastName" placeholder="Last Name" />
-      <Field className="signUp" type="password" name="password" placeholder="password" />
-      <Field className="signUp" component="select" name="service">
-        <option value="trad">Traditional</option>
-        <option value="mod">Modern</option>
-        <option value="Custom">Custom</option>
-      </Field>
-      tell us about yourself:
-      <Field className="signUp des" type="text" name="abtMe" />
-      <label>
-        <Field className="signUp" type="checkbox" name="tos" checked={values.tos} />
-        Accept TOS
-      </label>
-      <button disabled={isSubmitting} type="submit">
-        Submit
-      </button>
-    </Form>
+    <Modal basic centered closeIcon trigger={<Button content={"Sign Up"} />}>
+      <Modal.Content>
+        <Card raised centered>
+          <Card.Content>
+            <Card.Header as="h2" textAlign={"center"}>
+              Sign Up
+            </Card.Header>
+            <Card.Description textAlign={"center"}>
+              <Form className="onboarding">
+                <Field className="signUp" type="username" name="username" placeholder="Your name is your Username" />
+                <Field className="signUp" type="password" name="password" placeholder="password" />
+                <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
+                <Field className="signUp" type="location" name="location" placeholder="location" />
+                <label>
+                  {/* <Field type="checkbox" name="tOS" checked={status.tOS} /> */}
+                  Accept Terms of Services and Privacy Statments
+                </label>
+                <Button type="submit" disabled={isSubmitting} content="Submit" />
+              </Form>
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </Modal.Content>
+    </Modal>
   );
 }
 
 const FormikOnboarding = withFormik({
-  mapPropsToValues({ email, firstName, lastName, password, tos, service, abtMe }) {
+  mapPropsToValues({ username, password, email, location }) {
     return {
-      email: email || "",
-      firstName: firstName || "",
-      lastName: lastName || "",
+      username: username || "",
       password: password || "",
-      tos: tos || false,
-      service: service || "trad",
-      abtMe: abtMe || ""
+      email: email || "",
+      location: location || ""
     };
   },
   validationSchema: Yup.object().shape({
     email: Yup.string()
       .email("Email is NOT valid")
       .required("email is REQUIRED"),
-    firstName: Yup.string().required("Must enter first name"),
-    lastName: Yup.string().required("Must enter last name"),
+
+    username: Yup.string().required("Must enter name"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters long")
       .required("password is REQUIRED")
   }),
   handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
-    console.log(values);
-    axios.post("https://reqres.in/api/users", values).then(res => {
-      console.log(res);
-      setStatus(res);
-      setSubmitting(false);
-    });
+    axios
+      .post("https://lambda-wedding-planner.herokuapp.com/api/auth/register", values)
+      .then(res => {
+        console.log(res);
+        setStatus(res.data);
+        localStorage.setItem("token", res.data.token);
+        setSubmitting(false);
+      })
+      .catch(err => {
+        console.log("Sign Up error > ", err);
+        resetForm();
+      });
   }
 })(Onboarding);
 
