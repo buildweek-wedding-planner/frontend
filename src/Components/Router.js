@@ -10,7 +10,8 @@ const Router = () => {
 
   return (
     <div>
-      <PrivateRoute exact path="/" component={HomePage} />
+
+      <Route exact path="/" component={HomePage} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/newpost" component={PostPage} />
     </div>
