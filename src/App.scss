@@ -4,7 +4,8 @@ body {
 
 .pageHeader {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
   margin: 20px auto 40px;
 }
 
