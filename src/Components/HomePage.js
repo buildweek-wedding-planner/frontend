@@ -6,7 +6,8 @@ import SinglePost from "./SinglePost";
 
 const HomePage = () => {
   const [userPost, setUserPost] = useState([]);
-
+  
+  
   useEffect(() => {
     axios
       .get("https://lambda-wedding-planner.herokuapp.com/api/posts/all")
