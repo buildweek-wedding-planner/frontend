@@ -7,15 +7,9 @@ import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
 
 function Onboarding(props){
-  const { values, errors, touched, isSubmitting, status } = props;
+  const { values, errors, touched, isSubmitting} = props;
 
   const token = localStorage.getItem("token");
-
-
-  console.log(token);
-
-  console.log(values);
-
 
   if (token) {
     console.log(token)
@@ -52,6 +46,7 @@ function Onboarding(props){
   )
 };
 
+
 const FormikOnboarding = withFormik({
   mapPropsToValues({ username, password, email, location}){
     return{
@@ -61,6 +56,7 @@ const FormikOnboarding = withFormik({
       location: location || ""
     };
   },
+
   validationSchema: Yup.object().shape({
     email: Yup.string()
       .email("Email is NOT valid")
@@ -68,25 +64,25 @@ const FormikOnboarding = withFormik({
 
     username: Yup.string()
       .required("Must enter name"),
+
     password: Yup.string()
       .min(8, "Password must be at least 8 characters long")
       .required("password is REQUIRED")
   }),
-  handleSubmit(values, { resetForm, setStatus, setSubmitting }) {
 
+  handleSubmit(values, { resetForm, setSubmitting }) {
     axios
       .post("https://lambda-wedding-planner.herokuapp.com/api/auth/register", values)
       .then(res=>{
-        console.log(res)
-        setStatus(res.data)
+
         localStorage.setItem("token", res.data.token);
         setSubmitting(false);
+
       })
       .catch(err => {
         console.log("Sign Up error > ", err);
         resetForm();
       });
-
   }
 })(Onboarding);
 

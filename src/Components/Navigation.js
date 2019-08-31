@@ -4,6 +4,7 @@ import PostPage from "./PostPage";
 import Onboarding from "./Onboarding";
 import Login from "./Login";
 import React from "react";
+import Search from "./Search";
 const Navigation = ({ history }) => {
   const token = localStorage.getItem("token");
 
@@ -17,6 +18,7 @@ const Navigation = ({ history }) => {
           <Button content={"Dashboard"} />
         </NavLink>
         <PostPage />
+        <Search />
       </>
     );
   }
