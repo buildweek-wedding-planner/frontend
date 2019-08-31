@@ -49,7 +49,6 @@ export default withFormik({
     axios
       .post("https://reqres.in/api/login", values)
       .then(resolve => {
-        console.log("login resolve > ", resolve);
         localStorage.setItem("token", resolve.data.token);
         history.push("/dashboard");
       })
