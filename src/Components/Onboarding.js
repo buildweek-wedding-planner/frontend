@@ -26,7 +26,7 @@ function Onboarding(props){
             </Card.Header>
             <Card.Description textAlign={"center"}>
             <Form className="onboarding">
-              <Field className="signUp" type="username" name="username" placeholder="Your name is your Username" />
+              <Field className="signUp" type="username" name="username" placeholder="username" />
               <Field className="signUp" type="password" name="password" placeholder="password" />
               <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
               <Field className="signUp" type="location" name="location" placeholder="location" />
