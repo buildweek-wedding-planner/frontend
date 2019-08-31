@@ -6,18 +6,17 @@ import axios from "axios";
 import * as Yup from "yup";
 import { Card, Button, Modal } from "semantic-ui-react";
 
-
-function Onboarding(props){
-  const { values, errors, touched, isSubmitting} = props;
+function Onboarding(props) {
+  const { values, errors, touched, isSubmitting } = props;
 
   const token = localStorage.getItem("token");
-  
+
   if (token) {
     console.log(token);
     return <Redirect to="/dashboard" />;
   }
   return (
-    <Modal basic centered closeIcon trigger={<Button content={"Sign Up"} />}>
+    <Modal basic centered closeIcon trigger={<Button className="btn" content={"Sign Up"} />}>
       <Modal.Content>
         <Card raised centered>
           <Card.Content>
@@ -25,14 +24,13 @@ function Onboarding(props){
               Sign Up
             </Card.Header>
             <Card.Description textAlign={"center"}>
-
-            <Form className="onboarding">
-              <Field className="signUp" type="username" name="username" placeholder="Your name is your Username" />
-              <Field className="signUp" type="password" name="password" placeholder="password" />
-              <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
-              <Field className="signUp" type="location" name="location" placeholder="location" />
-              <Button type="submit" disabled={isSubmitting} content="Submit" />
-            </Form>
+              <Form className="onboarding">
+                <Field className="signUp" type="username" name="username" placeholder="Your name is your Username" />
+                <Field className="signUp" type="password" name="password" placeholder="password" />
+                <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
+                <Field className="signUp" type="location" name="location" placeholder="location" />
+                <Button type="submit" disabled={isSubmitting} content="Submit" />
+              </Form>
             </Card.Description>
           </Card.Content>
         </Card>
@@ -40,7 +38,6 @@ function Onboarding(props){
     </Modal>
   );
 }
-
 
 const FormikOnboarding = withFormik({
   mapPropsToValues({ username, password, email, location }) {
@@ -57,19 +54,16 @@ const FormikOnboarding = withFormik({
       .email("Email is NOT valid")
       .required("email is REQUIRED"),
 
-
-    username: Yup.string()
-      .required("Must enter name"),
+    username: Yup.string().required("Must enter name"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters long")
       .required("password is REQUIRED")
   }),
 
-
   handleSubmit(values, { resetForm, setSubmitting }) {
     axios
       .post("https://lambda-wedding-planner.herokuapp.com/api/auth/register", values)
-      .then(res=>{
+      .then(res => {
         localStorage.setItem("token", res.data.token);
         setSubmitting(false);
       })

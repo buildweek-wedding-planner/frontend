@@ -3,30 +3,27 @@ import { NavLink, withRouter } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import Onboarding from "./Onboarding";
 import Login from "./Login";
-import Search from "./Search";
 
 const Navigation = ({ history }) => {
   const token = localStorage.getItem("token");
 
   if (token) {
     return (
-      <>
+      <div>
         <NavLink to="/">
-          <Button content={"Home"} />
+          <Button className="btn" content={"Home"} />
         </NavLink>
         <NavLink to="/dashboard">
-          <Button content={"Posts"} />
+          <Button className="btn" content={"Posts"} />
         </NavLink>
-
-        <Search />
-      </>
+      </div>
     );
   }
   return (
-    <>
+    <div>
       <Onboarding />
       <Login history={history} />
-    </>
+    </div>
   );
 };
 

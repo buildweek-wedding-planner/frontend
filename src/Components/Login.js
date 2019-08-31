@@ -13,7 +13,7 @@ const Login = props => {
   }
 
   return (
-    <Modal basic centered closeIcon trigger={<Button content={"Sign In"} />}>
+    <Modal basic centered closeIcon trigger={<Button className="btn" content={"Sign In"} />}>
       <Modal.Content>
         <Card raised centered>
           <Card.Content>
@@ -24,7 +24,7 @@ const Login = props => {
               <Form className="loginForm">
                 <Field component="input" type="text" name="email" placeholder="Email" className="loginForm__field" />
                 <Field component="input" type="password" name="password" placeholder="Password" className="loginForm__field" />
-                <Button type="submit" content="Submit" />
+                <Button className="btn" type="submit" content="Submit" />
               </Form>
             </Card.Description>
           </Card.Content>
