@@ -1,8 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form, Field, withFormik } from "formik";
+import WeddingPage from "./WeddingPage";
  
-const Search = () =>{
+const Search = () => {
 
     const [items, setItems] = useState([]);
     
@@ -28,14 +28,18 @@ const Search = () =>{
 
         items.map((item, i)=>{
             searchList[i]= item[category].toLowerCase();
+
         });
 
-        console.log(searchList.findIndex(element => element.includes(search.search)))
         console.log(searchList)
-        console.log(search)
-        console.log(category)
-
-        // var couple=
+        console.log(searchList.findIndex(element => element.includes(search.search)));
+        // let wedding = items[searchList.findIndex(element => element.includes(search.search))];
+        // let wedding = items[0]
+        // return(
+        //     <div>
+        //         <WeddingPage wedding={items[0]}/>
+        //     </div>
+        // )
 
     };
 

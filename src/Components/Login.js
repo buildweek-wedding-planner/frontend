@@ -47,7 +47,7 @@ export default withFormik({
   }),
   handleSubmit(values, { resetForm, history }) {
     axios
-      .post("https://reqres.in/api/login", values)
+      .post("https://lambda-wedding-planner.herokuapp.com/api/auth/login", values)
       .then(resolve => {
         console.log("login resolve > ", resolve);
         localStorage.setItem("token", resolve.data.token);

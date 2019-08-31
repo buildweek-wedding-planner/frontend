@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field} from "formik";
 
@@ -30,10 +30,6 @@ function Onboarding(props){
               <Field className="signUp" type="password" name="password" placeholder="password" />
               <Field className="signUp" type="email" name="email" placeholder="email@example.com" />
               <Field className="signUp" type="location" name="location" placeholder="location" />
-              {/* <label>
-                <Field type="checkbox" name="tOS" checked={status.tOS} />
-                  Accept Terms of Services and Privacy Statments
-              </label> */}
               <Button type="submit" disabled={isSubmitting} content="Submit" />
             </Form>
             </Card.Description>
