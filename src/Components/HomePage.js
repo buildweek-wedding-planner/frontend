@@ -5,7 +5,6 @@ import { Container } from "semantic-ui-react";
 import SinglePost from "./SinglePost";
 
 const HomePage = () => {
-  
   const [userPost, setUserPost] = useState([]);
   
   
@@ -13,7 +12,7 @@ const HomePage = () => {
     axios
       .get("https://lambda-wedding-planner.herokuapp.com/api/posts/all")
       .then(resolve => setUserPost(resolve.data))
-      .catch(error => console.log("omuhgawd > ", error));
+      .catch(error => console.log("get posts error > ", error));
   }, []);
 
   return (

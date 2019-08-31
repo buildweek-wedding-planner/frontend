@@ -4,9 +4,9 @@ import Navigation from "./Navigation";
 
 const Header = ({ history }) => {
   return (
-    <header className="pageHeader">
+    <div className="pageHeader">
       <Navigation />
-    </header>
+    </div>
   );
 };
 
