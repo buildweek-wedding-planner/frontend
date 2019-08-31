@@ -33,8 +33,8 @@ const Dashboard = ({ post, toggle, touched, errors, status, values }) => {
                   <Field className="newPost__field" component="input" type="text" name="wedding_location" placeholder="Location" />
                   <Field className="newPost__field" component="input" type="text" name="wedding_theme" placeholder="Theme" />
                   <Field className="newPost__field" component="input" type="text" name="wedding_photographer" placeholder="Photographer" />
-                  <Button type="submit" content="Submt" />
-                  <Button type="reset" content="Reset" />
+                  <Button className="btn" type="submit" content="Submt" />
+                  <Button className="btn" type="reset" content="Reset" />
                 </Form>
               </Card.Content>
             </Card>

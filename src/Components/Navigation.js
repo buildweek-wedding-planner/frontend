@@ -11,10 +11,10 @@ const Navigation = ({ history }) => {
     return (
       <div>
         <NavLink to="/">
-          <Button content={"Home"} />
+          <Button className="btn" content={"Home"} />
         </NavLink>
         <NavLink to="/dashboard">
-          <Button content={"Posts"} />
+          <Button className="btn" content={"Posts"} />
         </NavLink>
       </div>
     );
