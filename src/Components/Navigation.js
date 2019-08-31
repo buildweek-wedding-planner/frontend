@@ -1,12 +1,10 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import PostPage from "./PostPage";
-
 import Onboarding from "./Onboarding";
 import Login from "./Login";
-import React from "react";
 import Search from "./Search";
+
 const Navigation = ({ history }) => {
   const token = localStorage.getItem("token");
 
@@ -19,9 +17,7 @@ const Navigation = ({ history }) => {
         <NavLink to="/dashboard">
           <Button content={"Posts"} />
         </NavLink>
-        <PostPage />
         <Search />
-
       </>
     );
   }
