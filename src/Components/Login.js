@@ -42,8 +42,10 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string(),
-    password: Yup.string()
+    email: Yup.string()
+      .email("Not a valid email")
+      .required("Required"),
+    password: Yup.string().required("Required")
   }),
   handleSubmit(values, { resetForm, history }) {
     axios

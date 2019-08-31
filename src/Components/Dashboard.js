@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Card, Divider, Grid, Icon, Segment } from "semantic-ui-react";
+import { Button, Card, Grid, Icon, Segment } from "semantic-ui-react";
 import SinglePost from "./SinglePost";
 
 const Dashboard = ({ post, toggle, touched, errors, status, values }) => {
