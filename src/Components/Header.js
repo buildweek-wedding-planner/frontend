@@ -7,7 +7,7 @@ import Search from "./Search";
 const Header = ({ history }) => {
   return (
     <div className="pageHeader">
-      <Image src={require("../img/logo.png")} size="small" />
+      <Image src={require("../img/logo.png")} size="medium" />
       <Navigation />
       <Search />
     </div>
