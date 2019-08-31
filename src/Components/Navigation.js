@@ -15,9 +15,8 @@ const Navigation = ({ history }) => {
           <Button content={"Home"} />
         </NavLink>
         <NavLink to="/dashboard">
-          <Button content={"Dashboard"} />
+          <Button content={"Posts"} />
         </NavLink>
-        <PostPage />
       </>
     );
   }
